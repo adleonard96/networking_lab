@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+
+  api1:
+    build: ./api
+    container_name: api1
+
+  api2:
+    build: ./api
+    container_name: api2
+
+  api3:
+    build: ./api
+    container_name: api3
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - api1
+      - api2
+      - api3
