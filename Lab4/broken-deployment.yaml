@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: broken-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: broken-api
+  template:
+    metadata:
+      labels:
+        app: broken-api
+    spec:
+      containers:
+      - name: broken-api
+        image: lab4-api:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8000
